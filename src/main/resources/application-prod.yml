@@ -1,5 +1,8 @@
 server:
-  port: ${PORT:8080}
+  port: 8080
+  tomcat:
+    max-threads: 200
+    min-spare-threads: 10
 
 management:
   endpoints:
@@ -15,11 +18,16 @@ management:
 spring:
   application:
     name: destiny-online
-  
-# Railway环境变量支持
+
+# 腾讯云生产环境配置
 logging:
   level:
     com.destiny: INFO
     org.springframework.web: INFO
+    root: INFO
   pattern:
     console: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
+  file:
+    name: /home/lighthouse/logs/destiny-online.log
+    max-size: 10MB
+    max-history: 10
